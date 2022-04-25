@@ -166,6 +166,23 @@ Socket.prototype.close = function (success, error) {
         [this.socketKey]);
 };
 
+Socket.prototype.setOptions = function (options, success, error) {
+    success = success || function () {
+        };
+    error = error || function () {
+        };
+
+    exec(
+        success,
+        error,
+        CORDOVA_SERVICE_NAME,
+        "setOptions",
+        [
+            this.socketKey,
+            options
+        ]);
+}
+
 Object.defineProperty(Socket.prototype, "state", {
     get          : function () {
         return this._state;
